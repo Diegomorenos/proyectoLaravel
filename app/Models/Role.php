@@ -5,24 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Cliente
+ * Class Role
  *
  * @property $id
- * @property $documento
- * @property $direccion
+ * @property $nombre
+ * @property $descripcion
  * @property $created_at
  * @property $updated_at
  *
- * @property User $user
+ * @property User[] $users
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class Cliente extends Model
+class Role extends Model
 {
     
     static $rules = [
-		'documento' => 'required',
-		'direccion' => 'required',
+		'nombre' => 'required',
     ];
 
     protected $perPage = 20;
@@ -32,15 +31,15 @@ class Cliente extends Model
      *
      * @var array
      */
-    protected $fillable = ['documento','direccion'];
+    protected $fillable = ['nombre','descripcion'];
 
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function user()
+    public function users()
     {
-        return $this->hasOne('App\Models\User', 'documento', 'documento');
+        return $this->hasMany('App\Models\User', 'id_rol', 'id');
     }
     
 

@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cliente;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 /**
- * Class ClienteController
+ * Class RoleController
  * @package App\Http\Controllers
  */
-class ClienteController extends Controller
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,10 +18,10 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        $clientes = Cliente::paginate();
+        $roles = Role::paginate();
 
-        return view('cliente.index', compact('clientes'))
-            ->with('i', (request()->input('page', 1) - 1) * $clientes->perPage());
+        return view('role.index', compact('roles'))
+            ->with('i', (request()->input('page', 1) - 1) * $roles->perPage());
     }
 
     /**
@@ -31,8 +31,8 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        $cliente = new Cliente();
-        return view('cliente.create', compact('cliente'));
+        $role = new Role();
+        return view('role.create', compact('role'));
     }
 
     /**
@@ -43,12 +43,12 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Cliente::$rules);
+        request()->validate(Role::$rules);
 
-        $cliente = Cliente::create($request->all());
+        $role = Role::create($request->all());
 
-        return redirect()->route('clientes.index')
-            ->with('success', 'Cliente created successfully.');
+        return redirect()->route('roles.index')
+            ->with('success', 'Role created successfully.');
     }
 
     /**
@@ -59,9 +59,9 @@ class ClienteController extends Controller
      */
     public function show($id)
     {
-        $cliente = Cliente::find($id);
+        $role = Role::find($id);
 
-        return view('cliente.show', compact('cliente'));
+        return view('role.show', compact('role'));
     }
 
     /**
@@ -72,26 +72,26 @@ class ClienteController extends Controller
      */
     public function edit($id)
     {
-        $cliente = Cliente::find($id);
+        $role = Role::find($id);
 
-        return view('cliente.edit', compact('cliente'));
+        return view('role.edit', compact('role'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  Cliente $cliente
+     * @param  Role $role
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cliente $cliente)
+    public function update(Request $request, Role $role)
     {
-        request()->validate(Cliente::$rules);
+        request()->validate(Role::$rules);
 
-        $cliente->update($request->all());
+        $role->update($request->all());
 
-        return redirect()->route('clientes.index')
-            ->with('success', 'Cliente updated successfully');
+        return redirect()->route('roles.index')
+            ->with('success', 'Role updated successfully');
     }
 
     /**
@@ -101,9 +101,9 @@ class ClienteController extends Controller
      */
     public function destroy($id)
     {
-        $cliente = Cliente::find($id)->delete();
+        $role = Role::find($id)->delete();
 
-        return redirect()->route('clientes.index')
-            ->with('success', 'Cliente deleted successfully');
+        return redirect()->route('roles.index')
+            ->with('success', 'Role deleted successfully');
     }
 }
