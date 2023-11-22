@@ -1,0 +1,23 @@
+body{
+    background-color: #333;
+}
+
+.card{
+    background-color: #9b9999;
+}
+
+.nav-link {
+    color: rgb(177, 3, 177);
+}
+
+.pepe, .pepea{
+    background-color: purple;
+    border-radius: 5%;
+    color: white;
+    height: 40px;
+}
+
+.logoo{
+    position: absolute;
+    left: 2%;
+}

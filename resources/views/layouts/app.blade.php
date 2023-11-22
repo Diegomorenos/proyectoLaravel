@@ -10,26 +10,25 @@
 </head>
 <body>
     <!-- Nav tabs -->
-    <ul class="nav nav-tabs" id="navId" role="tablist">
-        <li class="nav-item">
-            <a href="#tab1Id" class="nav-link active" data-bs-toggle="tab" aria-current="page">Active</a>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="#tab2Id">Action</a>
-                <a class="dropdown-item" href="#tab3Id">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#tab4Id">Action</a>
-            </div>
-        </li>
-        <li class="nav-item" role="presentation">
-            <a href="#tab5Id" class="nav-link" data-bs-toggle="tab">Another link</a>
-        </li>
-        <li class="nav-item" role="presentation">
-            <a href="#" class="nav-link disabled" data-bs-toggle="tab">Disabled</a>
-        </li>
-    </ul>
+    <div class="container">
+      <header class="d-flex justify-content-center py-3">
+        <div>
+        <img src="{{asset('img/logow.png')}}" alt="" width="2.5%" class="logoo"></div>
+        @auth
+        <ul class="nav nav-pills">
+          <li class="nav-item pepe"><a href="/" class="nav-link pepea" aria-current="page">Inicio</a></li>
+          @if (auth()->users()->id_rol==2)
+            <li class="nav-item"><a href="../empleados" class="nav-link">Empleados</a></li>
+          @elseif (auth()->users()->id_rol==3)
+            <li class="nav-item"><a href="../roles" class="nav-link">Roles</a></li>
+            <li class="nav-item"><a href="../users" class="nav-link">Usuarios</a></li>
+            <li class="nav-item"><a href="../clientes" class="nav-link">Clientes</a></li>
+            <li class="nav-item"><a href="../empleados" class="nav-link">Empleados</a></li>
+          @endif
+        </ul>
+        @endauth
+      </header>
+    </div>
     
     <!-- Tab panes -->
     <div class="tab-content" id="myTabContent">
