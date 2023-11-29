@@ -17,16 +17,33 @@
         @auth
         <ul class="nav nav-pills">
           <li class="nav-item pepe"><a href="/" class="nav-link pepea" aria-current="page">Inicio</a></li>
-          @if (auth()->users()->id_rol==2)
+          @if (auth()->user()->id_rol==1)
+            <li class="nav-item"><a href="../users" class="nav-link">Usuarios</a></li>
             <li class="nav-item"><a href="../empleados" class="nav-link">Empleados</a></li>
-          @elseif (auth()->users()->id_rol==3)
+            <li class="nav-item"><a href="../clientes" class="nav-link">Clientes</a></li>
+          @elseif (auth()->user()->id_rol==2)
             <li class="nav-item"><a href="../roles" class="nav-link">Roles</a></li>
             <li class="nav-item"><a href="../users" class="nav-link">Usuarios</a></li>
-            <li class="nav-item"><a href="../clientes" class="nav-link">Clientes</a></li>
             <li class="nav-item"><a href="../empleados" class="nav-link">Empleados</a></li>
+          @elseif (auth()->user()->id_rol==3)
+            <li class="nav-item"><a href="../clientes" class="nav-link">Clientes</a></li>
+          @elseif (auth()->user()->id_rol==4)
+            <li class="nav-item"><a href="../clientes" class="nav-link">Clientes</a></li>
           @endif
+          <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button class="btn pepe">
+                Salir
+            </button>
+          </form>
         </ul>
         @endauth
+        @guest
+        <ul class="nav nav-pills">
+          <li class="nav-item pepe"><a href="/" class="nav-link pepea" aria-current="page">Inicio</a></li>
+          <li class="nav-item"><a href="../users/create" class="nav-link">Registro</a></li>
+        </ul>
+        @endguest
       </header>
     </div>
     

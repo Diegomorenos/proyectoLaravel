@@ -5,6 +5,10 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\HabitacioneController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,10 +22,16 @@ use App\Http\Controllers\ClienteController;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('auth.login');
 });
 
 Route::resource('users', UserController::class);
 Route::resource('roles', RoleController::class);
 Route::resource('empleados', EmpleadoController::class);
 Route::resource('clientes', ClienteController::class);
+Route::resource('habitaciones', HabitacioneController::class);
+
+
+Route::get('login', [LoginController::class,'index'])->name('login');
+Route::post('logout', [LogoutController::class,'store'])->name('logout');
+Route::post('login', [LoginController::class,'store']);
