@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Role
+    Producto
 @endsection
 
 @section('content')
-    <div class="container-fluid col-8">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
@@ -13,12 +13,12 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Role') }}
+                                {{ __('Producto') }}
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('roles.create') }}" class="btn pepe btn-sm float-right"  data-placement="left">
-                                  {{ __('Crear Nuevo') }}
+                                <a href="{{ route('productos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                  {{ __('Create New') }}
                                 </a>
                               </div>
                         </div>
@@ -37,26 +37,28 @@
                                         <th>No</th>
                                         
 										<th>Nombre</th>
-										<th>Descripcion</th>
+										<th>Tarifa</th>
+										<th>Categoria</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($roles as $role)
+                                    @foreach ($productos as $producto)
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-											<td>{{ $role->nombre }}</td>
-											<td>{{ $role->descripcion }}</td>
+											<td>{{ $producto->nombre }}</td>
+											<td>{{ $producto->tarifa }}</td>
+											<td>{{ $producto->categoria }}</td>
 
                                             <td>
-                                                <form action="{{ route('roles.destroy',$role->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('roles.show',$role->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Ver') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('roles.edit',$role->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
+                                                <form action="{{ route('productos.destroy',$producto->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('productos.show',$producto->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('productos.edit',$producto->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -66,7 +68,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $roles->links() !!}
+                {!! $productos->links() !!}
             </div>
         </div>
     </div>

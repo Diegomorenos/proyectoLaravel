@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('empleados', function (Blueprint $table) {
+        Schema::create('facturas', function (Blueprint $table) {
             $table->id();
-            $table->string('documento')->unique();
-            $table->foreign('documento')->references('documento')->on('users');
-            $table->string('cargo');
-            $table->float('salario',12,2);
-            $table->date('fecha_contrato');
+            $table->float('impuesto',2,1);
+            $table->float('descuento',2,1);
+            $table->float('total',12,2);
+            $table->string('documento');
+            $table->foreign('documento')->references('documento')->on('clientes');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('empleados');
+        Schema::dropIfExists('facturas');
     }
 };

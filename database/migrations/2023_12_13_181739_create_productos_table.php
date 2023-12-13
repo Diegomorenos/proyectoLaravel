@@ -13,13 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('empleados', function (Blueprint $table) {
+        Schema::create('productos', function (Blueprint $table) {
             $table->id();
-            $table->string('documento')->unique();
-            $table->foreign('documento')->references('documento')->on('users');
-            $table->string('cargo');
-            $table->float('salario',12,2);
-            $table->date('fecha_contrato');
+            $table->string('nombre');
+            $table->float('tarifa',12,2);
+            $table->unsignedBigInteger('categoria');
+            $table->foreign('categoria')->references('id')->on('categorias');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('empleados');
+        Schema::dropIfExists('productos');
     }
 };

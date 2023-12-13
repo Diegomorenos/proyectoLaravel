@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ __('Crear') }} Role
+    {{ __('Create') }} Categoria
 @endsection
 
 @section('content')
@@ -13,13 +13,13 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Crear') }} Role</span>
+                        <span class="card-title">{{ __('Create') }} Categoria</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('roles.store') }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('categorias.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
 
-                            @include('role.form')
+                            @include('categoria.form')
 
                         </form>
                     </div>
