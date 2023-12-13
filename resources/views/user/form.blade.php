@@ -13,7 +13,7 @@
         </div>
         <div class="form-group">
             {{ Form::label('fecha_nacimiento') }}
-            {{ Form::text('fecha_nacimiento', $user->fecha_nacimiento, ['class' => 'form-control' . ($errors->has('fecha_nacimiento') ? ' is-invalid' : ''), 'placeholder' => 'Fecha Nacimiento']) }}
+            {{ Form::date('fecha_nacimiento', $user->fecha_nacimiento, ['class' => 'form-control' . ($errors->has('fecha_nacimiento') ? ' is-invalid' : ''), 'placeholder' => 'Fecha Nacimiento']) }}
             {!! $errors->first('fecha_nacimiento', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
@@ -33,7 +33,7 @@
         </div>
         <div class="form-group">
             {{ Form::label('id_rol') }}
-            {{ Form::text('id_rol', $user->id_rol, ['class' => 'form-control' . ($errors->has('id_rol') ? ' is-invalid' : ''), 'placeholder' => 'Id Rol']) }}
+            {{ Form::text('id_rol', $user->id_rol ?? '3', ['class' => 'form-control' . ($errors->has('id_rol') ? ' is-invalid' : '')]) }}
             {!! $errors->first('id_rol', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 

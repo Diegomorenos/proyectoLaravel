@@ -6,29 +6,35 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('app.css')}}">
-    <title>Administrador de Usuarios</title>
+    <title>Hoteleria</title>
 </head>
 <body>
     <!-- Nav tabs -->
-    <div class="container">
-      <header class="d-flex justify-content-center py-3">
+    <div class="container py-3">
+      <header>
         <div>
-        <img src="{{asset('img/logow.png')}}" alt="" width="2.5%" class="logoo"></div>
+        <img src="{{asset('img/logow.png')}}" alt="" width="2.5%" class="logoo">
+        </div>
         @auth
-        <ul class="nav nav-pills">
+        <p class="d-flex justify-content-end text-uppercase text-light">Bienvenido {{ auth()->user()->name }}</p>
+        <ul class="nav nav-pills d-flex justify-content-center">
           <li class="nav-item pepe"><a href="/" class="nav-link pepea" aria-current="page">Inicio</a></li>
           @if (auth()->user()->id_rol==1)
             <li class="nav-item"><a href="../users" class="nav-link">Usuarios</a></li>
             <li class="nav-item"><a href="../empleados" class="nav-link">Empleados</a></li>
-            <li class="nav-item"><a href="../clientes" class="nav-link">Clientes</a></li>
-          @elseif (auth()->user()->id_rol==2)
             <li class="nav-item"><a href="../roles" class="nav-link">Roles</a></li>
+            <li class="nav-item"><a href="../habitaciones" class="nav-link">Habitaciones</a></li>
+            <li class="nav-item"><a href="../estados" class="nav-link">Estados</a></li>
+          @elseif (auth()->user()->id_rol==2)
             <li class="nav-item"><a href="../users" class="nav-link">Usuarios</a></li>
-            <li class="nav-item"><a href="../empleados" class="nav-link">Empleados</a></li>
+            <li class="nav-item"><a href="../clientes" class="nav-link">Clientes</a></li>
+            <li class="nav-item"><a href="../habitaciones" class="nav-link">Habitaciones</a></li>
           @elseif (auth()->user()->id_rol==3)
             <li class="nav-item"><a href="../clientes" class="nav-link">Clientes</a></li>
+            <li class="nav-item"><a href="../habitaciones" class="nav-link">Habitaciones</a></li>
           @elseif (auth()->user()->id_rol==4)
             <li class="nav-item"><a href="../clientes" class="nav-link">Clientes</a></li>
+            <li class="nav-item"><a href="../habitaciones" class="nav-link">Habitaciones</a></li>
           @endif
           <form action="{{ route('logout') }}" method="POST">
             @csrf
@@ -39,9 +45,8 @@
         </ul>
         @endauth
         @guest
-        <ul class="nav nav-pills">
-          <li class="nav-item pepe"><a href="/" class="nav-link pepea" aria-current="page">Inicio</a></li>
-          <li class="nav-item"><a href="../users/create" class="nav-link">Registro</a></li>
+        <ul class="nav nav-pills d-flex justify-content-center py-3">
+          <li class="nav-item pepe"><a href="../users/create" class="nav-link pepea">Registro</a></li>
         </ul>
         @endguest
       </header>

@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
+use App\Models\Estado;
 use Illuminate\Http\Request;
 
 /**
- * Class RoleController
+ * Class EstadoController
  * @package App\Http\Controllers
  */
-class RoleController extends Controller
+class EstadoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,10 +18,10 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::paginate();
+        $estados = Estado::paginate();
 
-        return view('role.index', compact('roles'))
-            ->with('i', (request()->input('page', 1) - 1) * $roles->perPage());
+        return view('estado.index', compact('estados'))
+            ->with('i', (request()->input('page', 1) - 1) * $estados->perPage());
     }
 
     /**
@@ -31,8 +31,8 @@ class RoleController extends Controller
      */
     public function create()
     {
-        $role = new Role();
-        return view('role.create', compact('role'));
+        $estado = new Estado();
+        return view('estado.create', compact('estado'));
     }
 
     /**
@@ -43,12 +43,12 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Role::$rules);
+        request()->validate(Estado::$rules);
 
-        $role = Role::create($request->all());
+        $estado = Estado::create($request->all());
 
-        return redirect()->route('roles.index')
-            ->with('success', 'Rol creado correctamente...');
+        return redirect()->route('estados.index')
+            ->with('success', 'Estado created successfully.');
     }
 
     /**
@@ -59,9 +59,9 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        $role = Role::find($id);
+        $estado = Estado::find($id);
 
-        return view('role.show', compact('role'));
+        return view('estado.show', compact('estado'));
     }
 
     /**
@@ -72,26 +72,26 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        $role = Role::find($id);
+        $estado = Estado::find($id);
 
-        return view('role.edit', compact('role'));
+        return view('estado.edit', compact('estado'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  Role $role
+     * @param  Estado $estado
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Role $role)
+    public function update(Request $request, Estado $estado)
     {
-        request()->validate(Role::$rules);
+        request()->validate(Estado::$rules);
 
-        $role->update($request->all());
+        $estado->update($request->all());
 
-        return redirect()->route('roles.index')
-            ->with('success', 'Rol actualizado correctamente...');
+        return redirect()->route('estados.index')
+            ->with('success', 'Estado updated successfully');
     }
 
     /**
@@ -101,9 +101,9 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        $role = Role::find($id)->delete();
+        $estado = Estado::find($id)->delete();
 
-        return redirect()->route('roles.index')
-            ->with('success', 'Rol eliminado correctamente...');
+        return redirect()->route('estados.index')
+            ->with('success', 'Estado deleted successfully');
     }
 }

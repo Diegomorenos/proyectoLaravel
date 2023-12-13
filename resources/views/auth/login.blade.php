@@ -15,7 +15,7 @@
 
       <div class="mb-3">
         <label for="" class="form-label">USUARIO</label>
-        <input type="text" class="form-control" name="documento" placeholder="Documento" >
+        <input type="text" class="form-control" name="documento" placeholder="Documento" value="{{ old('documento') }}">
         @error('documento')
           <h6>{{ $message }}</h6>
         @enderror

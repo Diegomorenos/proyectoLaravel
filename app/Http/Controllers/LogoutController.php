@@ -9,6 +9,7 @@ class LogoutController extends Controller
     public function store(Request $request){
         auth()->logout();
         $request->session()->invalidate();
-        return view('auth/login');
+        $request->session()->regenerateToken();
+        return redirect(route('login'));
     }
 }

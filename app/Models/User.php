@@ -3,32 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-/**
- * Class User
- *
- * @property $id
- * @property $documento
- * @property $name
- * @property $fecha_nacimiento
- * @property $email
- * @property $email_verified_at
- * @property $password
- * @property $remember_token
- * @property $telefono
- * @property $id_rol
- * @property $created_at
- * @property $updated_at
- *
- * @property Cliente $cliente
- * @property Empleado $empleado
- * @property Role $role
- * @package App
- * @mixin \Illuminate\Database\Eloquent\Builder
- */
-class User extends Model
+
+class User extends Authenticatable
 {
-    
+    use HasApiTokens, HasFactory, Notifiable;
+
     static $rules = [
 		'documento' => 'required',
 		'name' => 'required',
@@ -41,14 +25,16 @@ class User extends Model
 
     protected $perPage = 20;
 
-    /**
-     * Attributes that should be mass-assignable.
-     *
-     * @var array
-     */
     protected $fillable = ['documento','name','fecha_nacimiento','email','password','telefono','id_rol'];
 
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
 
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */

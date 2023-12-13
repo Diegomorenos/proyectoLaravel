@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    User
+    Estado
 @endsection
 
 @section('content')
@@ -13,11 +13,11 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('User') }}
+                                {{ __('Estado') }}
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('users.create') }}" class="btn pepe btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('estados.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
                                 </a>
                               </div>
@@ -36,32 +36,22 @@
                                     <tr>
                                         <th>No</th>
                                         
-										<th>Documento</th>
 										<th>Name</th>
-										<th>Fecha Nacimiento</th>
-										<th>Email</th>
-										<th>Telefono</th>
-										<th>Id Rol</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($users as $user)
+                                    @foreach ($estados as $estado)
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-											<td>{{ $user->documento }}</td>
-											<td>{{ $user->name }}</td>
-											<td>{{ $user->fecha_nacimiento }}</td>
-											<td>{{ $user->email }}</td>
-											<td>{{ $user->telefono }}</td>
-											<td>{{ $user->id_rol }}</td>
+											<td>{{ $estado->name }}</td>
 
                                             <td>
-                                                <form action="{{ route('users.destroy',$user->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('users.show',$user->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('users.edit',$user->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                <form action="{{ route('estados.destroy',$estado->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('estados.show',$estado->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('estados.edit',$estado->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
@@ -74,7 +64,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $users->links() !!}
+                {!! $estados->links() !!}
             </div>
         </div>
     </div>

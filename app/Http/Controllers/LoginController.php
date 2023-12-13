@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -18,9 +20,8 @@ class LoginController extends Controller
         ]);
 
         if(!auth()->attempt($request->only('documento', 'password'))){
-
             return back()->with('mensaje', 'Credenciales incorrectas');
         }
-        return view('auth.login');
+        return view('home');
     }
 }
